@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class Role(BaseModel):
     id:  Optional[int]
     name: str = ""
@@ -28,3 +29,35 @@ class Role(BaseModel):
     sell_create: bool = False
     sell_view: bool = False
     state: bool = True
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "id": 1,
+                "name":  "admin",
+                "description": "administrador",
+                "role_create": True,
+                "role_view": True,
+                "role_update": True,
+                "role_delete": True,
+                "user_create": True,
+                "user_view": True,
+                "user_update": True,
+                "user_delete": True,
+                "category_create": True,
+                "category_view": True,
+                "category_update": True,
+                "category_delete": True,
+                "product_create": True,
+                "product_view": True,
+                "product_update": True,
+                "product_delete": True,
+                "customer_create": True,
+                "customer_view": True,
+                "customer_update": True,
+                "customer_delete": True,
+                "sell_create": True,
+                "sell_view": True,
+                "state": True,
+            }
+        }

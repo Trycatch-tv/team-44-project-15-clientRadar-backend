@@ -1,5 +1,6 @@
-from sqlalchemy.sql.sqltypes import Integer, String, Boolean
-from sqlalchemy import Column, Table
+import datetime
+from sqlalchemy.sql.sqltypes import Integer, String, Boolean, DateTime
+from sqlalchemy import Column
 
 from app.config.database import Base
 
@@ -32,6 +33,7 @@ class RoleModel (Base):
     sell_create = Column(Boolean, unique=False, default=False)
     sell_view = Column(Boolean, unique=False, default=False)
     state = Column(Boolean, unique=False, default=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 
 # RoleModel = Table(
