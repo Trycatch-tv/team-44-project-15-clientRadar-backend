@@ -1,17 +1,19 @@
-## BACKEND
+# CLIENT RADAR BACKEND
 
-### START SERVER
-
-```bash
-uvicorn app.main:app --reload
-```
-
-## ENVIRONTMENT
-
+## STARTED
+### ENVIRONTMENT
 ```bash
 conda create --name project15 python=3.9
 conda activate project15
 conda deactivate
+```
+
+### START PROJECT
+```bash
+git clone git@github.com:Trycatch-tv/team-44-project-15-clientRadar-backend.git
+cd team-44-project-15-clientRadar-backend
+pip install --no-cache-dir --upgrade -r requirements.txt
+uvicorn app.main:app --reload
 ```
 
 ## BUILD DOCKER IMAGE
