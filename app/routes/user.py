@@ -1,16 +1,15 @@
 from fastapi import APIRouter, Path
 from fastapi.encoders import jsonable_encoder
-from typing import List
 from fastapi.responses import JSONResponse
-from cryptography.fernet import Fernet
+from werkzeug.security import generate_password_hash
+from typing import List
+
 
 from app.config.database import Session
 from app.models.user import UserModel
 from app.schemas.user import User
 
 user = APIRouter()
-key = Fernet.generate_key()
-f = Fernet(key)
 
 
 @user.post("/user", tags=["User"], description="Add record to database")
@@ -22,7 +21,7 @@ def role_create(payload: User) -> dict:
     new_record.surname = payload.surname
     new_record.image = payload.image
     new_record.email = payload.email
-    new_record.password = f.encrypt(payload.password.encode("utf-8"))
+    new_record.password = generate_password_hash(payload.password)
     new_record.state = True
     db.add(new_record)
     db.commit()
