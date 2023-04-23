@@ -29,7 +29,7 @@ def role_create(payload: User) -> dict:
 
 
 @user.get("/users", tags=["User"], description="Get records from database",)
-def role_find() -> List[User]:
+def role_find():
     db = Session()
     result = db.query(UserModel).all()
     return JSONResponse(status_code=200, content=jsonable_encoder(result))
