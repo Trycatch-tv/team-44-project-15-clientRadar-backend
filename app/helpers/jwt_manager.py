@@ -1,8 +1,15 @@
+import datetime
 from jwt import encode, decode
+from decouple import config
+
+jwt_seed = config("JWT_SEED")
 
 
 def create_token(data: dict):
-    token: str = encode(payload=data, key="my_secret_key", algorithm="HS256")
+    exp = datetime.datetime.now(
+        tz=datetime.timezone.utc) + datetime.timedelta(hours=24)
+    token: str = encode(payload={**data, "exp": exp},
+                        key=jwt_seed, algorithm="HS256")
     return token
 
 
