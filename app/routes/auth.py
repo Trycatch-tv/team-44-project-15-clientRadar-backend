@@ -6,6 +6,7 @@ from werkzeug.security import check_password_hash
 from app.helpers.jwt_manager import create_token
 from app.config.database import Session
 from app.models.user import UserModel
+from app.models.role import RoleModel
 from app.schemas.auth import Auth
 
 auth = APIRouter()
@@ -21,4 +22,5 @@ def auth_login(user: Auth) -> dict:
     if not password_match:
         return JSONResponse(status_code=404, content={})
     token = create_token({"sub": record.id, "email": record.email})
-    return JSONResponse(status_code=200, content={"token": token, "user": jsonable_encoder(record)})
+    role = db.query(RoleModel).filter(RoleModel.id == record.role).first()
+    return JSONResponse(status_code=200, content={"token": token, "user": jsonable_encoder(record), "role": jsonable_encoder(role)})
