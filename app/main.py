@@ -7,6 +7,8 @@ from app.routes.auth import auth
 
 from app.config.database import Base, engine
 
+from app.routes.category import router as category_router
+
 app = FastAPI()
 app.title = "Radar Client"
 app.version = "0.0.1"
@@ -24,3 +26,4 @@ app.add_middleware(
 app.include_router(role)
 app.include_router(user)
 app.include_router(auth)
+app.include_router(category_router)
