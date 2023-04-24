@@ -13,7 +13,7 @@ router = APIRouter()
 # Definimos el endpoint para crear una categoría
 
 
-@router.post("/category", response_model=CategorySchema)
+@router.post("/category", tags=["Category"], response_model=CategorySchema)
 def create_category(category: CategorySchema):
     db = Session()
     # Creamos una nueva instancia del modelo CategoryModel y la agregamos a la base de datos
@@ -27,7 +27,7 @@ def create_category(category: CategorySchema):
 # Definimos el endpoint para obtener todas las categorías
 
 
-@router.get("/category", response_model=List[CategorySchema])
+@router.get("/category", tags=["Category"], response_model=List[CategorySchema])
 def read_categories(skip: int = 0, limit: int = 100, ):
     db = Session()
     # Obtenemos todas las categorías y las retornamos
@@ -37,7 +37,7 @@ def read_categories(skip: int = 0, limit: int = 100, ):
 # Definimos el endpoint para actualizar una categoría
 
 
-@router.put("/category/{id}", response_model=CategorySchema)
+@router.put("/category/{id}", tags=["Category"], response_model=CategorySchema)
 def update_category(id: int, category: CategorySchema, ):
     db = Session()
     # Buscamos la categoría correspondiente en la base de datos
@@ -54,7 +54,7 @@ def update_category(id: int, category: CategorySchema, ):
 # Definimos el endpoint para eliminar una categoría
 
 
-@router.delete("/category/{id}")
+@router.delete("/category/{id}", tags=["Category"],)
 def delete_category(id: int):
     db = Session()
     # Buscamos la categoría correspondiente en la base de datos
