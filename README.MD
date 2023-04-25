@@ -20,7 +20,8 @@ uvicorn app.main:app --reload
 
 ```bash
 pip3 freeze > requirements.txt
-docker build . -t user/team-44-project-15-s:0.0.1
+docker build . -t cscorp/radar-backend:0.0.1
+docker run -d --name radar-backend -p --restart=always cscorp/radar-backend:0.0.1
 ```
 
 ## START DATABASE

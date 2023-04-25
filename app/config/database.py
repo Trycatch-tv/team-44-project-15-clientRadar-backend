@@ -1,10 +1,13 @@
-# import os
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.session import sessionmaker
 from decouple import config
 
-ssl_args = {'ssl_ca': '/etc/ssl/cert.pem'}
+# ssl_args = {'ssl_ca': '/etc/ssl/cert.pem'}
+base_dir  = os.path.dirname(os.path.realpath(__file__))
+certs = os.path.join(base_dir, '../assets/cert.pem')
+ssl_args = {'ssl_ca': certs}
 db_host = config("DB_HOST")
 db_user = config("DB_USER")
 db_pass = config("DB_PASS")

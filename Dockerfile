@@ -1,11 +1,13 @@
-FROM python:3.9
+FROM python:3.11.3-slim
 
 WORKDIR /app
 
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY ./app /app
+COPY . .
+
+EXPOSE 80
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
